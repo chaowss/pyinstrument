@@ -50,7 +50,7 @@ class ProfilerMiddleware(MiddlewareMixin):  # type: ignore
             show_pyinstrument(request)
             and getattr(settings, "PYINSTRUMENT_URL_ARGUMENT", "profile") in request.GET
         ) or profile_dir:
-            profiler = Profiler()
+            profiler = Profiler(async_mode='disabled')
             profiler.start()
 
             request.profiler = profiler
